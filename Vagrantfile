@@ -265,6 +265,11 @@ system(provision_script_path('vbox-network'))
 
 Vagrant.configure(2) do |config|
 
+  # configure vagrant-proxyconf plugin
+  config.proxy.http     = user_config.http_proxy
+  config.proxy.https    = user_config.https_proxy
+  config.proxy.no_proxy = user_config.no_proxy
+
   # configure vagrant-hostmanager plugin
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
@@ -339,6 +344,9 @@ Vagrant.configure(2) do |config|
           vm.path = provision_script_path('install-mesos-memory')
         end
       end
+
+      # Update packages in the dcos-centos-virtualbox image
+      machine.vm.provision :shell, inline: "yum update -y"
 
       if user_config.private_registry
         machine.vm.provision :shell do |vm|

@@ -1,9 +1,9 @@
 DC/OS Vagrant
 ==================
 
-Quickly provision a [DC/OS](https://github.com/dcos/dcos) cluster on a local machine for development, testing, or demonstration.
+Quickly provision a [DC/OS](https://github.com/dcos/dcos) cluster on a local machine for development, testing, or demonstration using Vagrant behind a web proxy.
 
-Deploying DC/OS Vagrant involves creating a local cluster of VirtualBox VMs using the [dcos-vagrant-box](https://github.com/dcos/dcos-vagrant-box) base image and then installing [DC/OS](https://dcos.io/).
+Deploying DC/OS Vagrant involves creating a local cluster of VirtualBox VMs using the [dcos-vagrant-box](https://github.com/dcos/dcos-vagrant-box) base image and then installing [DC/OS](https://dcos.io/). NOTE: This is for those running behind a corporate web proxy.  For those not behind a web proxy, please use the [dcos-vagrant](https://github.com/dcos/dcos-vagrant)  
 
 ### Issue Tracking
 

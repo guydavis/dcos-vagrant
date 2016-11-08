@@ -14,3 +14,22 @@ ssh_user: vagrant
 agent_list: []
 platform: vagrant-virtualbox
 check_time: false
+
+oauth_enabled: 'true'
+
+use_proxy: true
+http_proxy: "http://test:testtest@10.0.90.127:3128"
+https_proxy: "http://test:testtest@10.0.90.127:3128"
+no_proxy:
+- "192.168.65.90"
+- "192.168.65.95"
+- "192.168.65.101"
+- "192.168.65.111"
+- "192.168.65.121"
+- "192.168.65.131"
+- "192.168.65.141"
+- "192.168.65.151"
+- "192.168.65.161"
+- "192.168.65.60"
+- "192.168.65.70"
+- "192.168.65.50"
