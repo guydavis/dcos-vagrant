@@ -266,9 +266,11 @@ system(provision_script_path('vbox-network'))
 Vagrant.configure(2) do |config|
 
   # configure vagrant-proxyconf plugin
-  config.proxy.http     = user_config.http_proxy
-  config.proxy.https    = user_config.https_proxy
-  config.proxy.no_proxy = user_config.no_proxy
+  if Vagrant.has_plugin?("vagrant-proxyconf") and ENV['http_proxy']
+    config.proxy.http     = ENV['http_proxy']
+    config.proxy.https    = ENV['https_proxy']
+    config.proxy.no_proxy = ENV['no_proxy']
+  end
 
   # configure vagrant-hostmanager plugin
   config.hostmanager.enabled = true
@@ -282,6 +284,12 @@ Vagrant.configure(2) do |config|
   if Vagrant.has_plugin?('vagrant-vbguest')
     # enable auto update guest additions
     config.vbguest.auto_update = true
+  end
+
+  # Cache Yum updates across boxes
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+    config.cache.enable :yum
   end
 
   machine_types.each do |name, machine_type|
@@ -346,7 +354,15 @@ Vagrant.configure(2) do |config|
       end
 
       # Update packages in the dcos-centos-virtualbox image
-      machine.vm.provision :shell, inline: "yum update -y"
+      machine.vm.provision :shell, inline: "echo 'Updating CentOS with yum....' && yum update -q -y || echo 'System update with yum failed. Please check your proxy setting and update manually later.'"
+
+      if ENV['http_proxy']
+        machine.vm.provision :shell do |vm|
+          vm.name = 'Docker Proxy Config'
+          vm.path = provision_script_path('docker-proxy')
+          vm.args = [ ENV['http_proxy'], ENV['https_proxy'], ENV['noproxy'] ]
+        end
+      end
 
       if user_config.private_registry
         machine.vm.provision :shell do |vm|

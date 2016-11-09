@@ -5,10 +5,16 @@ Quickly provision a [DC/OS](https://github.com/dcos/dcos) cluster on a local mac
 
 Deploying DC/OS Vagrant involves creating a local cluster of VirtualBox VMs using the [dcos-vagrant-box](https://github.com/dcos/dcos-vagrant-box) base image and then installing [DC/OS](https://dcos.io/). NOTE: This is for those running behind a corporate web proxy.  For those not behind a web proxy, please use the [dcos-vagrant](https://github.com/dcos/dcos-vagrant)  
 
-### Issue Tracking
+### Quickstart
 
-- Issue tracking is in [DCOS JIRA](https://dcosjira.atlassian.net/projects/VAGRANT/).
-- Remember to make a DC/OS JIRA account and login so you can get update notifications!
+1. Install latest Vagrant including VirtualBox
+1. ```git clone git@github.com:guydavis/dcos-vagrant-proxy.git && cd dcos-vagrant-proxy```
+1. ```vagrant plugin install vargrant-hostmanager vagrant-proxyconf vagrant-cachier```
+1. Set environment variables of http_proxy, https_proxy, and no_proxy in your host OS.
+1. Set proxy settings in etc/config.yml (create from most recent sample config-1.X.yaml)
+1. Copy VagrantConfig.yaml.example to VagrantConfig.yaml
+1. ```vagrant up m1 a1 p1 boot```
+1. Browse to http://http://192.168.65.90/ to see the DC/OS Admin Console.
 
 
 # Where Do I Start?
@@ -38,7 +44,7 @@ Deploying DC/OS Vagrant involves creating a local cluster of VirtualBox VMs usin
 - Find the Docs - https://dcos.io/docs/
 - Get Help - http://chat.dcos.io/
 - Join the Discussion - https://groups.google.com/a/dcos.io/d/forum/users/
-- Report a DC/OS Vagrant Issue - https://dcosjira.atlassian.net/projects/VAGRANT/
+- Report a DC/OS Vagrant with Proxy Issue - https://github.com/guydavis/dcos-vagrant-proxy/issues
 - Report a DC/OS Issue - https://dcosjira.atlassian.net/projects/DCOS/
 - Contribute - https://dcos.io/contribute/
 

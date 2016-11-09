@@ -10,12 +10,10 @@ set -o pipefail
 
 mkdir /etc/systemd/system/docker.service.d
 
-sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf <<EOF
-[Service]
-Environment="HTTP_PROXY=$1"
-Environment="HTTPS_PROXY=$2"
-Environment="NO_PROXY=$3"
-EOF 
+echo "[Service]" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment=\"HTTP_PROXY=$1\"" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment=\"HTTPS_PROXY=$2\"" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment=\"NO_PROXY=$3\"" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
 
 systemctl daemon-reload
 

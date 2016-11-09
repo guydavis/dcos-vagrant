@@ -122,7 +122,7 @@ While the `VagrantConfig.yaml` configuration is specific to DC/OS Vagrant, the `
 
 ## Configure a Proxy
 
-In DC/OS 1.8.5 proxies are allowed to be configured in `config.yaml`.
+In DC/OS 1.8.5 proxies are allowed to be configured in `config.yaml`.  
 
 Make sure that `no_proxy` includes all DC/OS Vagrant VM IPs and any local network addresses you want accessible to the cluster.
 
@@ -152,3 +152,5 @@ no_proxy:
 ```
 
 Remember, `config.yaml` cannot be changed after your cluster is deployed!
+
+NOTE: For the vagrant-proxyconf plugin, you must also set the following environment variables (for your host OS): http_proxy, https_proxy, no_proxy.
