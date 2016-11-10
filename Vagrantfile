@@ -360,7 +360,7 @@ Vagrant.configure(2) do |config|
         machine.vm.provision :shell do |vm|
           vm.name = 'Docker Proxy Config'
           vm.path = provision_script_path('docker-proxy')
-          vm.args = [ ENV['http_proxy'], ENV['https_proxy'], ENV['noproxy'] ]
+          vm.args = [ ENV['http_proxy'], ENV['https_proxy'], ENV['no_proxy'] ]
         end
       end
 

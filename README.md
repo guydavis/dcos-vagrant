@@ -12,6 +12,7 @@ Deploying DC/OS Vagrant involves creating a local cluster of VirtualBox VMs usin
 1. ```vagrant plugin install vargrant-hostmanager vagrant-proxyconf vagrant-cachier```
 1. Set environment variables of http_proxy, https_proxy, and no_proxy in your host OS.
 1. Set proxy settings in etc/config.yml (create from most recent sample config-1.X.yaml)
+1. ```export DCOS_CONFIG_PATH=etc/config.yml```
 1. Copy VagrantConfig.yaml.example to VagrantConfig.yaml
 1. ```vagrant up m1 a1 p1 boot```
 1. Browse to http://http://192.168.65.90/ to see the DC/OS Admin Console.
